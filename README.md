@@ -1,4 +1,4 @@
-# A Snakemake pipeline for quality control/trimming of next-generation sequencing data from Illumina sequences
+# Illumina NGS Quality Control and Trimming Pipeline using Snakemake
 ### Motivation
 
 
