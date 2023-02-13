@@ -45,6 +45,7 @@ The output files of the pipeline include fastqc reports in both HTML and ZIP for
 - Below is the default directory structure:
     - **env/**   - contains the Conda environment files
     - **input/** - contains fastq files
+      - **_NB_**: There are two fastq files here for testing, but you can add your own
     - **output/** - contains the output from the analysis
     - **workflow/** - contains the Snakemake script (snakefile) and the workflow configuration file
 ```
@@ -72,12 +73,12 @@ Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/ind
   - `conda env create --file env/environment.yml`
   
 2 - Activate the conda environment:
-  - _**PS** - This needs to be done every time you want to execute this pipeline_:
+  - _**Note** - This needs to be done every time you want to execute this pipeline_:
   - `conda activate illumina-trim-wizard`
 
 
 3 - Finally, execute the whole `Snakemake` pipeline by running the following command in your terminal:
-  - _**PS** - Replace **4** in the command with the number of CPUs you wish to use_
+  - _**Note** - Replace **4** in the command with the number of CPUs you wish to use_
   - `snakemake -s workflow/illuminaSeqAssembly.smk -c4`
 
   
