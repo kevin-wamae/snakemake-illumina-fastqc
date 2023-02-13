@@ -3,7 +3,6 @@
 # *********************************************************************
 
 
-
 # dependencies
 # *********************************************************************
 # configuration file
@@ -34,7 +33,6 @@ rule all:
         # ------------------------------------
         # multiqc
         config["multiqc"]["dir"],
-
 
 
 # fastqc - check quality of raw fastq-files and merge fastqc reports
@@ -68,7 +66,6 @@ rule fastqc:
             fastqc {input.fastq} --threads {params.threads} --format fastq --quiet --outdir {output.fastqc_dir}
             """
         )
-
 
 
 # multiqc - merge fastqc reports
