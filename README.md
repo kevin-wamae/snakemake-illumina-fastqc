@@ -79,7 +79,7 @@ Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/ind
 
 3 - Finally, execute the whole `Snakemake` pipeline by running the following command in your terminal:
   - _**Note** - Replace **4** in the command with the number of CPUs you wish to use_
-  - `snakemake -s workflow/illuminaSeqAssembly.smk -c4`
+  - `snakemake -s workflow/illuminaQC.smk -c4`
 
   
   ---
