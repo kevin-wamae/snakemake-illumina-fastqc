@@ -1,0 +1,6 @@
+# exclude all fastq files, except those negated below
+*.fastq.gz
+
+# include example fastq files
+!file1_R1.fastq.gz
+!file2_R1.fastq.gz
