@@ -10,7 +10,10 @@ configfile: "workflow/config.yaml"
 
 
 # global wild cards of sample and pairpair list
-(SAMPLES, PAIR) = glob_wildcards(config["input"]["fastq"] + "{sample}_{pair}.fastq.gz")
+(SAMPLES,) = glob_wildcards(config["input"]["fastq"] + "{sample}_R1.fastq.gz")
+
+
+print(SAMPLES)
 
 
 # all output out
@@ -19,17 +22,12 @@ rule all:
     input:
         # ------------------------------------
         # fastqc
-        expand(
-            config["fastqc"]["dir"] + "{sample}_{pair}_fastqc.html",
-            sample=SAMPLES,
-            pair=PAIR,
-        ),
-        expand(
-            config["fastqc"]["dir"] + "{sample}_{pair}_fastqc.zip",
-            sample=SAMPLES,
-            pair=PAIR,
-        ),
-        config["fastqc"]["dir"],
+        expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.html", sample=SAMPLES),
+        expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.html", sample=SAMPLES),
+        expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.html", sample=SAMPLES),
+        expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.html", sample=SAMPLES),
+        expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.zip", sample=SAMPLES),
+        expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.zip", sample=SAMPLES),
         # ------------------------------------
         # multiqc
         config["multiqc"]["dir"],
@@ -41,45 +39,38 @@ rule all:
 
 rule fastqc:
     input:
-        fastq=expand(
-            config["input"]["fastq"] + "{sample}_{pair}.fastq.gz",
-            sample=SAMPLES,
-            pair=PAIR,
-        ),
+        r1=config["input"]["fastq"] + "{sample}_R1.fastq.gz",
+        r2=config["input"]["fastq"] + "{sample}_R2.fastq.gz",
     output:
-        html=expand(
-            config["fastqc"]["dir"] + "{sample}_{pair}_fastqc.html",
-            sample=SAMPLES,
-            pair=PAIR,
-        ),
-        zip=expand(
-            config["fastqc"]["dir"] + "{sample}_{pair}_fastqc.zip",
-            sample=SAMPLES,
-            pair=PAIR,
-        ),
-        fastqc_dir=directory(config["fastqc"]["dir"]),
+        r1_html=config["fastqc"]["dir"] + "{sample}_R1_fastqc.html",
+        r2_html=config["fastqc"]["dir"] + "{sample}_R2_fastqc.html",
+        r1_zip=config["fastqc"]["dir"] + "{sample}_R1_fastqc.zip",
+        r2_zip=config["fastqc"]["dir"] + "{sample}_R2_fastqc.zip",
     params:
         threads=config["extra"]["threads"],
-    run:
-        shell(
-            """
-            fastqc {input.fastq} --threads {params.threads} --format fastq --quiet --outdir {output.fastqc_dir}
-            """
-        )
+        dir=directory(config["fastqc"]["dir"]),
+    shell:
+        """
+        fastqc {input.r1} {input.r2} \
+            --threads {params.threads} \
+            --format fastq \
+            --quiet \
+            --outdir {params.dir}
+        """
 
 
 # multiqc - merge fastqc reports
 # *********************************************************************
-
-
 rule multiqc:
     input:
-        rules.fastqc.output.fastqc_dir,
+        config["fastqc"]["dir"],
     output:
         directory(config["multiqc"]["dir"]),
     run:
         shell(
             """
-            multiqc --force {input} --outdir {output}
+            multiqc \
+                --force {input} \
+                --outdir {output}
             """
         )
