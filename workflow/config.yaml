@@ -20,13 +20,10 @@ input:
 #                              OUTPUT
 # ****************************************************************
 
-
-
 # qc_raw_files - quality control on raw fastq files
 # ----------------------------------------------------------------
 fastqc:
    dir: output/fastqc/
-
 
 
 # merge_qc_reports - merge fastqc files from raw fastq files
