@@ -2,5 +2,5 @@
 *.fastq.gz
 
 # include example fastq files
-!file1_R1.fastq.gz
-!file2_R1.fastq.gz
+!reads_R1.fastq.gz
+!reads_R2.fastq.gz
