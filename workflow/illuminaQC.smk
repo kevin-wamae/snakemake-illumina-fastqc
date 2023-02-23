@@ -63,15 +63,15 @@ rule fastqc:
 # multiqc - merge fastqc reports
 # *********************************************************************
 rule multiqc:
-    input:
-        config["fastqc"]["dir"],
+    params:
+        rules.fastqc.params.dir,
     output:
         directory(config["multiqc"]["dir"]),
     run:
         shell(
             """
             multiqc \
-                --force {input} \
+                --force {params} \
                 --outdir {output}
             """
         )
