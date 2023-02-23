@@ -13,7 +13,8 @@ configfile: "workflow/config.yaml"
 (SAMPLES,) = glob_wildcards(config["input"]["fastq"] + "{sample}_R1.fastq.gz")
 
 
-print(SAMPLES)
+# test if samples can be found, uncomment for testing
+# print(SAMPLES)
 
 
 # all output out
