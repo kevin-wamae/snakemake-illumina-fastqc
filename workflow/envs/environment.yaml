@@ -1,4 +1,4 @@
-name: fastq-trim-wizard
+name: fastqc-multiqc-pipeline
 channels:
   - defaults
 dependencies:
