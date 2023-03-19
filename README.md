@@ -31,20 +31,23 @@ cd FastQC-MultiQC-pipeline
 conda env create --file workflow/envs/environment.yaml
 ```
 
-4. **Activate the conda environment and note that this needs to be done every time you exit and restart your terminal and want re-run this pipeline:**
+1. **Activate the conda environment.** This needs to be done every time you exit and restart your terminal and want re-run this pipeline:
 
 ```
 conda activate fastqc-multiqc-pipeline
 ```
 
-5. **Run the pipeline with Snakemake:**
+1. **Run the pipeline with Snakemake:**
 ```
 snakemake --cores <number_of_cores> --use-conda
 ```
 
 - _The `--cores` option specifies the number of cores to use, and the `--use-conda` option tells Snakemake to use the specified conda environments._
 
-6. **Finally, the config file is located in `config/config.yaml`. This file contains paths to input files and directories, output directories, and other settings such as the number of cores to use.**
+6. **Finally, the config file is located in `config/config.yaml`.**
+   - This file contains paths to input files and directories, output directories, and other settings such as the number of cores to use.
+   - You can edit this file to suit your needs.
+   - For example, you can change the number of cores to use by editing the `extra:threads:` parameter
 
 ## Output
 - The pipeline generates HTML reports for each sample in the fastqc directory and a merged HTML report in the multiqc directory.
