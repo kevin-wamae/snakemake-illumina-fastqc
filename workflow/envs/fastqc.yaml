@@ -1,0 +1,5 @@
+name: fastqc
+channels:
+  - defaults
+dependencies:
+  - bioconda::fastqc>=0.11.8
