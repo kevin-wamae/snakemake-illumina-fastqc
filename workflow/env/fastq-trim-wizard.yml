@@ -1,0 +1,5 @@
+name: fastq-trim-wizard
+channels:
+  - defaults
+dependencies:
+  - bioconda::snakemake>=6.3.0
