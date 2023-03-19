@@ -46,6 +46,8 @@ rule fastqc:
     params:
         threads=config["extra"]["threads"],
         dir=directory(config["fastqc"]["dir"]),
+    conda:
+        "envs/fastqc.yaml"
     shell:
         """
         fastqc {input.r1} {input.r2} \
@@ -62,12 +64,12 @@ rule multiqc:
     params:
         rules.fastqc.params.dir,
     output:
-        directory(config["multiqc"]["dir"]),
-    run:
-        shell(
-            """
-            multiqc \
-                --force {params} \
-                --outdir {output}
-            """
-        )
+        dir=directory(config["multiqc"]["dir"]),
+    conda:
+        "envs/multiqc.yaml"
+    shell:
+        """
+        multiqc \
+            --force {params} \
+            --outdir {output.dir}
+        """
