@@ -35,9 +35,9 @@ The output files of the pipeline include fastqc reports in both HTML and ZIP for
 
 ### Where to start
 - Clone this project into your computer using Git ([_installation instructions_](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)) with the following command:
-  - `git clone https://github.com/kevin-wamae/illuminaTrimWizard.git`
+  - `git clone https://github.com/kevin-wamae/fastq-trim-wizard.git`
 - Navigate into the cloned directory using the following command:
-  - `cd illuminaTrimWizard`
+  - `cd fastq-trim-wizard`
  
  ---
 
