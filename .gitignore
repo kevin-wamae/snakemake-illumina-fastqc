@@ -9,3 +9,6 @@
 # output files
 .snpEff.config
 output/*
+
+# mac files
+**/.DS_Store
