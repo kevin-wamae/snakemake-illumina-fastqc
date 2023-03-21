@@ -18,7 +18,7 @@ The configuration file is located in config/config.yaml. This file contains path
 ## Usage
 1.  **Clone the repository:**
 ```
-git clone https://github.com/kevin-wamae/FastQC-MultiQC-pipeline.git
+git clone https://github.com/kevin-wamae/fastQC-multiQC-pipeline.git
 ```
 
 2. **Navigate into the cloned directory using the following command:**
