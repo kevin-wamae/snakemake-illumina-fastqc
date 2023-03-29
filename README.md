@@ -23,7 +23,7 @@ git clone https://github.com/kevin-wamae/fastQC-multiQC-pipeline.git
 
 2. **Navigate into the cloned directory using the following command:**
 ```
-cd FastQC-MultiQC-pipeline
+cd fastQC-multiQC-pipeline
 ```
 
 3. **Create a conda environment (named `fastqc-multiqc-pipeline`) for the pipeline:**
