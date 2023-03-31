@@ -21,8 +21,6 @@ rule all:
         # fastqc
         expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.html", sample=SAMPLES),
         expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.html", sample=SAMPLES),
-        expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.html", sample=SAMPLES),
-        expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.html", sample=SAMPLES),
         expand(config["fastqc"]["dir"] + "{sample}_R1_fastqc.zip", sample=SAMPLES),
         expand(config["fastqc"]["dir"] + "{sample}_R2_fastqc.zip", sample=SAMPLES),
         # ------------------------------------
