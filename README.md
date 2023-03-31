@@ -18,12 +18,12 @@ The configuration file is located in config/config.yaml. This file contains path
 ## Usage
 1.  **Clone the repository:**
 ```
-git clone https://github.com/kevin-wamae/fastQC-multiQC-pipeline.git
+git clone https://github.com/kevin-wamae/fastqc-multiqc-pipeline.git
 ```
 
 2. **Navigate into the cloned directory using the following command:**
 ```
-cd fastQC-multiQC-pipeline
+cd fastqc-multiqc-pipeline
 ```
 
 3. **Create a conda environment (named `fastqc-multiqc-pipeline`) for the pipeline:**
@@ -56,4 +56,4 @@ snakemake --cores <number_of_cores> --use-conda
 - This pipeline uses conda environments to manage dependencies for each rule. The environments are defined in envs/fastqc.yaml and envs/multiqc.yaml.
 
 ## Contact
-- **Report any issues or bugs by openning an issue [here](https://github.com/kevin-wamae/FastQC-MultiQC-pipeline/issues) or contact me via email (wamaekevin[at]gmail.com)**
+- **Report any issues or bugs by openning an issue [here](https://github.com/kevin-wamae/fastqc-multiqc-pipeline/issues) or contact me via email (wamaekevin[at]gmail.com)**
