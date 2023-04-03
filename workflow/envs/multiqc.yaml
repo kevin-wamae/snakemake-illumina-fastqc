@@ -1,5 +1,5 @@
 name: multiqc
 channels:
-  - defaults
+  - bioconda
 dependencies:
-  - bioconda::multiqc>=1.6
+  - bioconda::multiqc>=1.14
