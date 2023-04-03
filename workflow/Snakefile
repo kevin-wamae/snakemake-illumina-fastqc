@@ -30,8 +30,6 @@ rule all:
 
 # fastqc - check quality of raw fastq-files and merge fastqc reports
 # *********************************************************************
-
-
 rule fastqc:
     input:
         r1=config["input"]["fastq"] + "{sample}_R1.fastq.gz",
@@ -42,17 +40,24 @@ rule fastqc:
         r1_zip=config["fastqc"]["dir"] + "{sample}_R1_fastqc.zip",
         r2_zip=config["fastqc"]["dir"] + "{sample}_R2_fastqc.zip",
     params:
-        threads=config["extra"]["threads"],
+        threads=config["threads"],
         dir=directory(config["fastqc"]["dir"]),
+    log:
+        config["fastqc"]["dir"] + "log/{sample}.log",
     conda:
         "envs/fastqc.yaml"
     shell:
         """
+        echo "##############################################"
+        echo "------------    Running FastQC    ------------"
+        echo "##############################################"
+
         fastqc {input.r1} {input.r2} \
             --threads {params.threads} \
             --format fastq \
             --quiet \
-            --outdir {params.dir}
+            --outdir {params.dir} \
+            2> {log}
         """
 
 
@@ -63,11 +68,18 @@ rule multiqc:
         rules.fastqc.params.dir,
     output:
         dir=directory(config["multiqc"]["dir"]),
+    log:
+        config["multiqc"]["dir"] + "log/multiqc.log",
     conda:
         "envs/multiqc.yaml"
     shell:
         """
+        echo "##############################################"
+        echo "-----------    Running MultiQC    ------------"
+        echo "##############################################"
+        
         multiqc \
             --force {params} \
-            --outdir {output.dir}
+            --outdir {output.dir} \
+            2> {log}
         """
